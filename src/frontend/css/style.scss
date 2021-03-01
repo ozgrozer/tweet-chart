@@ -1,3 +1,5 @@
+@import './variables';
+
 * {
   margin: 0;
   padding: 0;
@@ -8,4 +10,15 @@
 body {
   font-size: 18px;
   font-family: 'Rubik', sans-serif;
+}
+
+#app {
+  @media (max-width: $mobile-max) {
+    width: 100%;
+    padding: 30px;
+  }
+  @media (min-width: $tablet-min) {
+    width: $appWidth;
+    margin: 50px auto;
+  }
 }

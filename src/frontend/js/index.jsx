@@ -5,7 +5,9 @@ import './../css/style.scss'
 
 const App = () => {
   return (
-    <h1>Hello World!</h1>
+    <div id='app'>
+      <h1>Tweet Chart</h1>
+    </div>
   )
 }
 

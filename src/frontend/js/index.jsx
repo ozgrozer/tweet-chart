@@ -49,6 +49,28 @@ const App = () => {
           </div>
 
           <div className='formGroup'>
+            <label htmlFor='cryptocurrency'>
+              Cryptocurrency
+            </label>
+            <Select
+              value='BTC'
+              id='cryptocurrency'
+              name='cryptocurrency'
+            >
+              <option value='BTC'>Bitcoin</option>
+              <option value='ETH'>Ethereum</option>
+              <option value='ADA'>Cardano</option>
+              <option value='BNB'>Binance Coin</option>
+              <option value='USDT'>Tether</option>
+              <option value='DOT'>Polkadot</option>
+              <option value='XRP'>XRP</option>
+              <option value='LTC'>Litecoin</option>
+              <option value='LINK'>Chainlink</option>
+              <option value='XLM'>Stellar</option>
+            </Select>
+          </div>
+
+          <div className='formGroup'>
             <button>Submit</button>
           </div>
         </fieldset>

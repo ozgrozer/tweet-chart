@@ -11,9 +11,11 @@
     "url": "https://github.com/ozgrozer"
   },
   "scripts": {
-    "dev": "concurrently \"npm:server\" \"npm:start\" -c \"green,blue\"",
-    "server": "nodemon ./src/backend/server.js",
-    "start": "parcel ./src/frontend/index.html --out-dir ./dist --public-url / --port 1301",
+    "dev": "concurrently \"npm:nodemon\" \"npm:parcel\" -c \"green,blue\"",
+    "nodemon": "nodemon --ignore .cache/ --ignore dist/ --ignore node_modules/ ./src/backend/server.js",
+    "parcel": "parcel ./src/frontend/index.html --out-dir ./dist --public-url / --port 1301",
+    "prestart": "npm run build",
+    "start": "node ./src/backend/server.js",
     "build": "parcel build ./src/frontend/index.html --out-dir ./dist --public-url / --no-source-maps"
   },
   "dependencies": {

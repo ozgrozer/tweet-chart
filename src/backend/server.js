@@ -9,6 +9,8 @@ app.listen(port, () => {
   console.log('Example app listening on port http://localhost:' + port)
 })
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', '..', 'dist', 'index.html'))
 })
+
+app.post('/generate-image', require('./generateImage'))

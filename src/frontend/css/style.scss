@@ -23,6 +23,7 @@ input, select, button {
   padding: 0 15px;
   appearance: none;
   border-radius: 4px;
+  transition: all 0.2s;
   -moz-appearance: none;
   -webkit-appearance: none;
   border: 1px solid $gray4;
@@ -41,10 +42,12 @@ input, select, button {
   }
 }
 button {
+  color: $white;
   cursor: pointer;
-  background-color: #fafaf9;
+  border-color: $blue;
+  background-color: $blue;
   &:hover {
-    background-color: darken(#fafaf9, 10%);
+    background-color: darken($blue, 10%);
   }
 }
 

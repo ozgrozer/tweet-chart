@@ -32,7 +32,7 @@ const App = () => {
       <Form
         onSubmit={onSubmit}
         postSubmit={postSubmit}
-        postOptions={{ method: 'post', url: '/get-image' }}
+        postOptions={{ method: 'post', url: '/generate-image' }}
       >
         <fieldset disabled={formIsSubmitting}>
           <div className='formGroup'>

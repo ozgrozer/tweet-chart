@@ -75,6 +75,12 @@ const App = () => {
           </div>
         </fieldset>
       </Form>
+
+      <div className='generatedImageWrapper'>
+        <div className='helpText'>
+          Type the tweet URL in the input above
+        </div>
+      </div>
     </div>
   )
 }

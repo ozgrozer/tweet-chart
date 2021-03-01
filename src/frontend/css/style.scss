@@ -22,11 +22,11 @@ input, select, button {
   height: 50px;
   padding: 0 15px;
   appearance: none;
-  border-radius: 4px;
   transition: all 0.2s;
   -moz-appearance: none;
   -webkit-appearance: none;
   border: 1px solid $gray4;
+  border-radius: $borderRadius;
   @include placeholder($gray4);
   &:focus {
     border-color: $blue;
@@ -71,7 +71,10 @@ select {
 }
 
 .formGroup {
-  margin-top: 30px;
+  margin-top: 20px;
+  &:first-child {
+    margin-top: 30px;
+  }
 
   label {
     color: $gray6;
@@ -79,6 +82,24 @@ select {
     font-size: 12px;
     margin-bottom: 5px;
     text-transform: uppercase;
+  }
+}
+
+.generatedImageWrapper {
+  width: 100%;
+  margin-top: 30px;
+  position: relative;
+  border: 1px solid $gray4;
+  border-radius: $borderRadius;
+
+  .helpText {
+    color: $gray5;
+    min-height: 200px;
+    line-height: 20px;
+    text-align: center;
+    background-color: $gray1;
+    border-radius: $borderRadius;
+    padding-top: (200px - 20px) / 2;
   }
 }
 

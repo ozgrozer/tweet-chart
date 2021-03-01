@@ -15,6 +15,8 @@ const validations = {
 }
 
 const App = () => {
+  const [backendResult, setBackendResult] = useState('')
+
   const [formIsSubmitting, setFormIsSubmitting] = useState(false)
   const onSubmit = res => {
     if (res.isFormValid) {
@@ -23,6 +25,7 @@ const App = () => {
   }
   const postSubmit = res => {
     setFormIsSubmitting(false)
+    setBackendResult(res.data)
   }
 
   return (
@@ -77,9 +80,27 @@ const App = () => {
       </Form>
 
       <div className='generatedImageWrapper'>
-        <div className='helpText'>
-          Type the tweet URL in the input above
-        </div>
+        {
+          backendResult
+            ? (
+              <div className='helpText'>
+                backend data<br /><br />
+                tweetId<br />
+                <b>{backendResult.tweetId}</b><br /><br />
+                cryptocurrency<br />
+                <b>{backendResult.cryptocurrency}</b>
+              </div>
+              )
+            : (
+              <div className='helpText'>
+                {
+                  formIsSubmitting
+                    ? (<div>Loading...</div>)
+                    : (<div>Type the tweet URL in the input above</div>)
+                }
+              </div>
+              )
+        }
       </div>
     </div>
   )

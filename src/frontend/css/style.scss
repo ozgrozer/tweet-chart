@@ -34,8 +34,9 @@ input, select, button {
   &:disabled {
     opacity: 1;
     color: $gray4;
+    cursor: default;
     border-color: $gray3;
-    background-color: $gray1;
+    background-color: $gray1 !important;
   }
   &.is-invalid {
     border-color: $red;
@@ -48,6 +49,9 @@ button {
   background-color: $blue;
   text-transform: uppercase;
   &:hover {
+    background-color: darken($blue, 5%);
+  }
+  &:active {
     background-color: darken($blue, 10%);
   }
 }
@@ -86,20 +90,20 @@ select {
 }
 
 .generatedImageWrapper {
-  width: 100%;
+  display: flex;
   margin-top: 30px;
+  min-height: 250px;
   position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: $gray1;
   border: 1px solid $gray4;
   border-radius: $borderRadius;
 
   .helpText {
     color: $gray5;
-    min-height: 200px;
-    line-height: 20px;
     text-align: center;
-    background-color: $gray1;
     border-radius: $borderRadius;
-    padding-top: (200px - 20px) / 2;
   }
 }
 

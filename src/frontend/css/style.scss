@@ -46,6 +46,7 @@ button {
   cursor: pointer;
   border-color: $blue;
   background-color: $blue;
+  text-transform: uppercase;
   &:hover {
     background-color: darken($blue, 10%);
   }

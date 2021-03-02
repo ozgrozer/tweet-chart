@@ -100,6 +100,11 @@ select {
   border: 1px solid $gray4;
   border-radius: $borderRadius;
 
+  .generatedImage {
+    width: 100%;
+    border-radius: 4px;
+  }
+
   .helpText {
     color: $gray5;
     text-align: center;

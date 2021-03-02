@@ -20,6 +20,7 @@ const App = () => {
   const [formIsSubmitting, setFormIsSubmitting] = useState(false)
   const onSubmit = res => {
     if (res.isFormValid) {
+      setBackendResult('')
       setFormIsSubmitting(true)
     }
   }
@@ -35,7 +36,7 @@ const App = () => {
       <Form
         onSubmit={onSubmit}
         postSubmit={postSubmit}
-        postOptions={{ method: 'post', url: '/generate-image' }}
+        postOptions={{ method: 'post', url: '/generate-images' }}
       >
         <fieldset disabled={formIsSubmitting}>
           <div className='formGroup'>
@@ -83,12 +84,11 @@ const App = () => {
         {
           backendResult
             ? (
-              <div className='helpText'>
-                backend data<br /><br />
-                tweetId<br />
-                <b>{backendResult.tweetId}</b><br /><br />
-                cryptocurrency<br />
-                <b>{backendResult.cryptocurrency}</b>
+              <div>
+                <img
+                  className='generatedImage'
+                  src={`data:image/png;base64,${backendResult}`}
+                />
               </div>
               )
             : (

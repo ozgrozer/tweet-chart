@@ -14,4 +14,4 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', '..', 'dist', 'index.html'))
 })
 
-app.post('/generate-image', require('./generateImage'))
+app.post('/generate-images', require('./generateImages'))

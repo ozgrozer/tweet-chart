@@ -31,7 +31,7 @@ const App = () => {
 
   return (
     <div id='app'>
-      <h1>Tweet CHART</h1>
+      <h1>Tweet Chart</h1>
 
       <Form
         onSubmit={onSubmit}

@@ -7,40 +7,42 @@ import './../css/style.scss'
 
 import time from './time'
 
+const demoTweetDetails = {
+  data: [{
+    author_id: '44196397',
+    public_metrics: {
+      retweet_count: 6078,
+      reply_count: 6170,
+      like_count: 88140,
+      quote_count: 731
+    },
+    created_at: '2021-03-03T20:10:07.000Z',
+    text: '5 mins to Starship test flight attempt',
+    id: '1367205667321171968',
+    source: 'Twitter for iPhone'
+  }],
+  includes: {
+    users: [{
+      username: 'elonmusk',
+      created_at: '2009-06-02T20:12:29.000Z',
+      id: '44196397',
+      profile_image_url: 'https://pbs.twimg.com/profile_images/1364491704817098753/V22-Luf7_normal.jpg',
+      name: 'Elon Musk'
+    }]
+  }
+}
+
 const kFormatter = num => {
   return Math.abs(num) > 999
     ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K'
     : Math.sign(num) * Math.abs(num)
 }
 
-const TweetImage = () => {
-  const demoResponse = {
-    data: [{
-      author_id: '44196397',
-      public_metrics: {
-        retweet_count: 6078,
-        reply_count: 6170,
-        like_count: 88140,
-        quote_count: 731
-      },
-      created_at: '2021-03-03T20:10:07.000Z',
-      text: '5 mins to Starship test flight attempt',
-      id: '1367205667321171968',
-      source: 'Twitter for iPhone'
-    }],
-    includes: {
-      users: [{
-        username: 'elonmusk',
-        created_at: '2009-06-02T20:12:29.000Z',
-        id: '44196397',
-        profile_image_url: 'https://pbs.twimg.com/profile_images/1364491704817098753/V22-Luf7_normal.jpg',
-        name: 'Elon Musk'
-      }]
-    }
-  }
+const TweetImage = props => {
+  const { tweetDetails } = props
 
-  const tweetData = demoResponse.data[0]
-  const tweetUser = demoResponse.includes.users[0]
+  const tweetData = tweetDetails.data[0]
+  const tweetUser = tweetDetails.includes.users[0]
 
   return (
     <div className='tweetImage'>
@@ -92,7 +94,7 @@ const TweetImage = () => {
         </div>
 
         <div className='metric'>
-          <svg viewBox='0 0 24 24' class='metricIcon'>
+          <svg viewBox='0 0 24 24' className='metricIcon'>
             <g>
               <path d='M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z' />
             </g>
@@ -150,6 +152,17 @@ const validations = {
       invalidFeedback: 'Please provide a value'
     }
   ]
+}
+
+const GeneratedImage = props => {
+  const { backendResult } = props
+  const { tweetDetails } = backendResult
+
+  return (
+    <div className='generatedImage'>
+      <TweetImage tweetDetails={tweetDetails} />
+    </div>
+  )
 }
 
 const App = () => {
@@ -222,12 +235,7 @@ const App = () => {
         {
           backendResult
             ? (
-              <div>
-                <img
-                  className='generatedImage'
-                  src={`data:image/png;base64,${backendResult}`}
-                />
-              </div>
+              <GeneratedImage backendResult={backendResult} />
               )
             : (
               <div className='helpText'>
@@ -242,7 +250,7 @@ const App = () => {
       </div>
 
       <div style={{ marginTop: '30px' }}>
-        <TweetImage />
+        <TweetImage tweetDetails={demoTweetDetails} />
       </div>
 
       <div style={{ marginTop: '30px' }}>

@@ -92,22 +92,27 @@ select {
 .generatedImageWrapper {
   display: flex;
   margin-top: 30px;
-  min-height: 250px;
+  user-select: none;
   position: relative;
   align-items: center;
+  transition: all 0.2s;
   justify-content: center;
   background-color: $gray1;
-  border: 1px solid $gray4;
   border-radius: $borderRadius;
 
   .generatedImage {
     width: 100%;
     border-radius: 4px;
+    transition: all 0.2s;
   }
 
   .helpText {
+    width: 100%;
     color: $gray5;
+    line-height: 200px;
     text-align: center;
+    transition: all 0.2s;
+    border: 1px solid $gray4;
     border-radius: $borderRadius;
   }
 }

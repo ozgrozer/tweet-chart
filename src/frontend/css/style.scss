@@ -113,7 +113,8 @@ select {
 }
 
 .tweetImage {
-  padding: 20px;
+  $tweetSecondColor: #5b7083;
+  padding: 40px;
   background-color: $white;
   border: 1px solid $gray4;
   border-radius: $borderRadius;
@@ -151,9 +152,9 @@ select {
       }
 
       .username {
-        color: #5b7083;
         font-size: 15px;
         line-height: 19px;
+        color: $tweetSecondColor;
       }
     }
   }
@@ -164,8 +165,46 @@ select {
   }
 
   .createdAt {
-    color: #5b7083;
     margin-top: 16px;
+    color: $tweetSecondColor;
+  }
+
+  .metrics {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #ccd6de;
+    &:after {
+      content: '';
+      clear: both;
+      display: table;
+    }
+
+    .metric {
+      float: left;
+      margin-left: 26px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:after {
+        content: '';
+        clear: both;
+        display: table;
+      }
+
+      .metricIcon {
+        float: left;
+        height: 20px;
+        fill: $tweetSecondColor;
+      }
+
+      .metricCount {
+        float: left;
+        font-size: 15px;
+        margin-left: 10px;
+        line-height: 20px;
+        color: $tweetSecondColor;
+      }
+    }
   }
 }
 

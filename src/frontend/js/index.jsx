@@ -10,21 +10,29 @@ import time from './time'
 const TweetImage = () => {
   const demoResponse = {
     data: [{
-      created_at: '2021-02-25T06:35:22.000Z',
       author_id: '44196397',
-      text: 'Starship to the moon',
-      id: '1364826301027115008'
+      public_metrics: {
+        retweet_count: 6078,
+        reply_count: 6170,
+        like_count: 88140,
+        quote_count: 731
+      },
+      created_at: '2021-03-03T20:10:07.000Z',
+      text: '5 mins to Starship test flight attempt',
+      id: '1367205667321171968',
+      source: 'Twitter for iPhone'
     }],
     includes: {
       users: [{
-        created_at: '2009-06-02T20:12:29.000Z',
         username: 'elonmusk',
+        created_at: '2009-06-02T20:12:29.000Z',
         id: '44196397',
         profile_image_url: 'https://pbs.twimg.com/profile_images/1364491704817098753/V22-Luf7_normal.jpg',
         name: 'Elon Musk'
       }]
     }
   }
+
   const tweetData = demoResponse.data[0]
   const tweetUser = demoResponse.includes.users[0]
 
@@ -56,6 +64,7 @@ const TweetImage = () => {
 
       <div className='createdAt'>
         {time({ normalTime: tweetData.created_at, format: 'h:mm TT · MMM d, yyyy' })}
+        {tweetData.source ? <span> · {tweetData.source}</span> : null}
       </div>
     </div>
   )

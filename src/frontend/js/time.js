@@ -3,7 +3,7 @@ const time = props => {
 
   let unixTime_ = ''
   if (normalTime) {
-    unixTime_ = new Date(normalTime).getTime() / 1000
+    unixTime_ = new Date(normalTime).getTime()
   } else if (unixTime) {
     unixTime_ = unixTime * 1000
   }

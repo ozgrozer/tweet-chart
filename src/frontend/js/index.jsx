@@ -5,6 +5,62 @@ import { Line } from '@reactchartjs/react-chart.js'
 
 import './../css/style.scss'
 
+import time from './time'
+
+const TweetImage = () => {
+  const demoResponse = {
+    data: [{
+      created_at: '2021-02-25T06:35:22.000Z',
+      author_id: '44196397',
+      text: 'Starship to the moon',
+      id: '1364826301027115008'
+    }],
+    includes: {
+      users: [{
+        created_at: '2009-06-02T20:12:29.000Z',
+        username: 'elonmusk',
+        id: '44196397',
+        profile_image_url: 'https://pbs.twimg.com/profile_images/1364491704817098753/V22-Luf7_normal.jpg',
+        name: 'Elon Musk'
+      }]
+    }
+  }
+  const tweetData = demoResponse.data[0]
+  const tweetUser = demoResponse.includes.users[0]
+
+  return (
+    <div className='tweetImage'>
+      <div className='userDetails'>
+        <div className='profileImageWrapper'>
+          <img
+            alt=''
+            className='profileImage'
+            src={tweetUser.profile_image_url}
+          />
+        </div>
+
+        <div className='nameAndUsernameWrapper'>
+          <div className='name'>
+            {tweetUser.name}
+          </div>
+
+          <div className='username'>
+            @{tweetUser.username}
+          </div>
+        </div>
+      </div>
+
+      <div className='text'>
+        {tweetData.text}
+      </div>
+
+      <div className='createdAt'>
+        {time({ normalTime: tweetData.created_at, format: 'h:mm TT · MMM d, yyyy' })}
+      </div>
+    </div>
+  )
+}
+
 const LineChart = () => {
   const btc = {
     labels: ['Jan 1 2021', 'Jan 2 2021', 'Jan 3 2021', 'Jan 4 2021', 'Jan 5 2021', 'Jan 6 2021', 'Jan 7 2021', 'Jan 8 2021', 'Jan 9 2021', 'Jan 10 2021', 'Jan 11 2021', 'Jan 12 2021', 'Jan 13 2021', 'Jan 14 2021', 'Jan 15 2021', 'Jan 16 2021', 'Jan 17 2021', 'Jan 18 2021', 'Jan 19 2021', 'Jan 20 2021', 'Jan 21 2021', 'Jan 22 2021', 'Jan 23 2021', 'Jan 24 2021', 'Jan 25 2021', 'Jan 26 2021', 'Jan 27 2021', 'Jan 28 2021', 'Jan 29 2021', 'Jan 30 2021', 'Jan 31 2021'],
@@ -138,6 +194,10 @@ const App = () => {
               </div>
               )
         }
+      </div>
+
+      <div style={{ marginTop: '30px' }}>
+        <TweetImage />
       </div>
 
       <div style={{ marginTop: '30px' }}>

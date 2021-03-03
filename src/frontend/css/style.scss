@@ -112,6 +112,63 @@ select {
   }
 }
 
+.tweetImage {
+  padding: 20px;
+  background-color: $white;
+  border: 1px solid $gray4;
+  border-radius: $borderRadius;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  .userDetails {
+    &:after {
+      content: '';
+      clear: both;
+      display: table;
+    }
+
+    .profileImageWrapper {
+      width: 48px;
+      float: left;
+      height: 48px;
+
+      .profileImage {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border-radius: 50%;
+      }
+    }
+
+    .nameAndUsernameWrapper {
+      float: left;
+      margin-left: 12px;
+      padding-top: (48px - (19px * 2)) / 2;
+
+      .name {
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 19px;
+      }
+
+      .username {
+        color: #5b7083;
+        font-size: 15px;
+        line-height: 19px;
+      }
+    }
+  }
+
+  .text {
+    font-size: 23px;
+    margin-top: 16px;
+  }
+
+  .createdAt {
+    color: #5b7083;
+    margin-top: 16px;
+  }
+}
+
 .invalid-feedback {
   display: none;
 }

@@ -92,7 +92,6 @@ select {
 .generatedImageWrapper {
   display: flex;
   margin-top: 30px;
-  user-select: none;
   position: relative;
   align-items: center;
   transition: all 0.2s;
@@ -109,11 +108,13 @@ select {
   .helpText {
     width: 100%;
     color: $gray5;
-    line-height: 200px;
+    height: 200px;
+    line-height: 20px;
     text-align: center;
     transition: all 0.2s;
     border: 1px solid $gray4;
     border-radius: $borderRadius;
+    padding-top: (200px - (20px + 2px)) / 2;
   }
 }
 

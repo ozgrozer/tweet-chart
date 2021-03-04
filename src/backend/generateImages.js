@@ -37,16 +37,17 @@ const monthDiff = (d1, d2) => {
 const datesForNomics = props => {
   const { date } = props
 
-  const formattedTweetCreatedDate = time({ normalTime: date, format: 'yyyy-dd-MM' })
-  const tweetCreatedDate = new Date(formattedTweetCreatedDate)
+  const tweetCreatedDate = new Date(date)
   const nowDate = new Date()
   const nowUnixTime = +new Date()
   const monthsPast = monthDiff(tweetCreatedDate, nowDate)
   const beforeRatio = 3
-  const totalMonthsBefore = Math.ceil(monthsPast + (monthsPast / beforeRatio))
+  const _totalMonthsBefore = Math.ceil(monthsPast + (monthsPast / beforeRatio))
+  const totalMonthsBefore = _totalMonthsBefore < 1 ? 1 : _totalMonthsBefore
   const totalMonthsBeforeUnixTime = nowDate.setMonth(nowDate.getMonth() - totalMonthsBefore)
   const startDate = time({ unixTime: totalMonthsBeforeUnixTime, format: 'yyyy-MM-dd' })
   const endDate = time({ unixTime: nowUnixTime, format: 'yyyy-MM-dd' })
+  console.log({ monthsPast, totalMonthsBefore, startDate, endDate })
 
   return { startDate, endDate }
 }
@@ -57,7 +58,6 @@ const getCoinHistoricalData = async props => {
 
     const tweetData = tweetDetails.data[0]
     const { startDate, endDate } = datesForNomics({ date: tweetData.created_at })
-    console.log({ startDate, endDate, coinSymbol })
 
     const response = await axios({
       method: 'get',

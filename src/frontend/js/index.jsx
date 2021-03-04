@@ -5,7 +5,7 @@ import { Line } from '@reactchartjs/react-chart.js'
 
 import './../css/style.scss'
 
-import time from './time'
+import time from './../../common/time'
 
 const demoTweetDetails = {
   data: [{

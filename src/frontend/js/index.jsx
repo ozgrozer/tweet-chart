@@ -325,7 +325,7 @@ const App = () => {
         }
       </div>
 
-      <div className='generatedImageWrapper' style={{ marginTop: '30px', marginBottom: '30px' }}>
+      <div className='generatedImageWrapper' style={{ display: 'none', marginTop: '30px', marginBottom: '30px' }}>
         <GeneratedImage
           backendResult={{
             coinSymbol: 'BTC',

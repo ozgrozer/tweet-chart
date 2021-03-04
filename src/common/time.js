@@ -5,7 +5,7 @@ const time = props => {
   if (normalTime) {
     unixTime_ = new Date(normalTime).getTime()
   } else if (unixTime) {
-    unixTime_ = unixTime * 1000
+    unixTime_ = unixTime
   }
 
   const date = new Date(unixTime_)

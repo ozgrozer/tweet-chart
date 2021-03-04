@@ -21,7 +21,8 @@ const getTweetDetails = async props => {
 
     return response.data
   } catch (e) {
-    console.log(e)
+    console.log('getTweetDetails issue')
+    console.log(e.message)
   }
 }
 
@@ -52,27 +53,29 @@ const datesForNomics = props => {
 
 const getCoinHistoricalData = async props => {
   try {
-    const { tweetDetails, cryptocurrency } = props
+    const { tweetDetails, coinSymbol } = props
 
     const tweetData = tweetDetails.data[0]
     const { startDate, endDate } = datesForNomics({ date: tweetData.created_at })
+    console.log({ startDate, endDate, coinSymbol })
 
     const response = await axios({
       method: 'get',
-      url: `https://api.nomics.com/v1/exchange-rates/history?key=${process.env.NOMICS_API_KEY}&format=json&currency=${cryptocurrency}&start=${startDate}T00%3A00%3A00Z&end=${endDate}T00%3A00%3A00Z`
+      url: `https://api.nomics.com/v1/exchange-rates/history?key=${process.env.NOMICS_API_KEY}&format=json&currency=${coinSymbol}&start=${startDate}T00%3A00%3A00Z&end=${endDate}T00%3A00%3A00Z`
     })
 
     return response.data
   } catch (e) {
-    console.log(e)
+    console.log('getCoinHistoricalData issue')
+    console.log(e.message)
   }
 }
 
 const generateImages = async (req, res) => {
-  const { tweetUrl, cryptocurrency } = req.body
+  const { tweetUrl, coinSymbol } = req.body
   const tweetDetails = await getTweetDetails({ tweetUrl })
-  const coinHistoricalData = await getCoinHistoricalData({ tweetDetails, cryptocurrency })
-  const result = { tweetDetails, coinHistoricalData }
+  const coinHistoricalData = await getCoinHistoricalData({ tweetDetails, coinSymbol })
+  const result = { tweetDetails, coinHistoricalData, coinSymbol }
   res.json(result)
 }
 

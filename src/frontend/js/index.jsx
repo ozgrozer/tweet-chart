@@ -108,9 +108,11 @@ const TweetImage = props => {
   )
 }
 
-const LineChart = () => {
+const LineChart = props => {
+  const { coinHistoricalData } = props
+
   const btc = {
-    labels: ['Jan 1 2021', 'Jan 2 2021', 'Jan 3 2021', 'Jan 4 2021', 'Jan 5 2021', 'Jan 6 2021', 'Jan 7 2021', 'Jan 8 2021', 'Jan 9 2021', 'Jan 10 2021', 'Jan 11 2021', 'Jan 12 2021', 'Jan 13 2021', 'Jan 14 2021', 'Jan 15 2021', 'Jan 16 2021', 'Jan 17 2021', 'Jan 18 2021', 'Jan 19 2021', 'Jan 20 2021', 'Jan 21 2021', 'Jan 22 2021', 'Jan 23 2021', 'Jan 24 2021', 'Jan 25 2021', 'Jan 26 2021', 'Jan 27 2021', 'Jan 28 2021', 'Jan 29 2021', 'Jan 30 2021', 'Jan 31 2021'],
+    labels: ['Jan 1', 'Jan 2', 'Jan 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12', 'Jan 13', 'Jan 14', 'Jan 15', 'Jan 16', 'Jan 17', 'Jan 18', 'Jan 19', 'Jan 20', 'Jan 21', 'Jan 22', 'Jan 23', 'Jan 24', 'Jan 25', 'Jan 26', 'Jan 27', 'Jan 28', 'Jan 29', 'Jan 30', 'Jan 31'],
     data: ['29380.86', '32174.21', '33047.33', '32060.62', '34030.85', '36761.82', '39638.67', '40868.37', '40358.75', '38338.40', '35687.10', '34512.57', '37165.51', '39122.75', '36877.52', '36061.34', '35836.69', '36593.99', '35982.88', '35538.56', '31060.53', '32890.20', '32115.08', '32279.40', '32337.20', '32498.71', '30491.49', '33404.37', '34218.52', '34180.87', '33063.63']
   }
 
@@ -140,7 +142,14 @@ const LineChart = () => {
   }
 
   return (
-    <Line data={data} options={options} />
+    <div className='lineChart'>
+      <Line
+        data={data}
+        width={958}
+        height={458}
+        options={options}
+      />
+    </div>
   )
 }
 
@@ -156,11 +165,12 @@ const validations = {
 
 const GeneratedImage = props => {
   const { backendResult } = props
-  const { tweetDetails } = backendResult
+  const { tweetDetails, coinHistoricalData } = backendResult
 
   return (
     <div className='generatedImage'>
       <TweetImage tweetDetails={tweetDetails} />
+      <LineChart coinHistoricalData={coinHistoricalData} />
     </div>
   )
 }
@@ -249,12 +259,8 @@ const App = () => {
         }
       </div>
 
-      <div style={{ marginTop: '30px' }}>
-        <TweetImage tweetDetails={demoTweetDetails} />
-      </div>
-
-      <div style={{ marginTop: '30px' }}>
-        <LineChart />
+      <div className='generatedImageWrapper' style={{ marginTop: '30px', marginBottom: '30px' }}>
+        <GeneratedImage backendResult={{ tweetDetails: demoTweetDetails }} />
       </div>
     </div>
   )

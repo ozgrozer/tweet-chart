@@ -212,8 +212,8 @@ const LineChart = props => {
 
   const padding = 20
   const borderWidth = 1
-  const width = 1000 - (padding * 2) - (borderWidth * 2)
-  const height = 500 - (padding * 2) - (borderWidth * 2)
+  const width = 1440 - (padding * 2) - (borderWidth * 2)
+  const height = 810 - (padding * 2) - (borderWidth * 2)
 
   return (
     <div className='lineChart'>
@@ -249,11 +249,9 @@ const DownloadImage = () => {
   }
 
   return (
-    <div className='downloadImage'>
-      <button className='button blue' onClick={downloadImage}>
-        Download
-      </button>
-    </div>
+    <button className='button blue downloadImageButton' onClick={downloadImage}>
+      Download
+    </button>
   )
 }
 
@@ -348,15 +346,15 @@ const App = () => {
               <div className='helpText'>
                 {
                   formIsSubmitting
-                    ? (<div>Loading...</div>)
-                    : (<div>Type the tweet URL in the input above</div>)
+                    ? (<React.Fragment>Loading...</React.Fragment>)
+                    : (<React.Fragment>Type the tweet URL in the input above</React.Fragment>)
                 }
               </div>
               )
         }
       </div>
 
-      <div className='generatedImageWrapper' style={{ display: 'none', marginTop: '30px', marginBottom: '30px' }}>
+      <div className='generatedImageWrapper' style={{ display: 'none' }}>
         <GeneratedImage
           backendResult={{
             coinSymbol: 'BTC',

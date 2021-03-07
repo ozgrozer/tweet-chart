@@ -210,12 +210,17 @@ const LineChart = props => {
     }
   }
 
+  const padding = 20
+  const borderWidth = 1
+  const width = 1000 - (padding * 2) - (borderWidth * 2)
+  const height = 500 - (padding * 2) - (borderWidth * 2)
+
   return (
     <div className='lineChart'>
       <Line
         data={data}
-        width={958}
-        height={458}
+        width={width}
+        height={height}
         options={options}
       />
     </div>

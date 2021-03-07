@@ -1,5 +1,8 @@
+/* eslint react/jsx-fragments: 0 */
+
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+import domtoimage from 'dom-to-image'
 import { Form, Input, Select } from 'rfv'
 import { Line } from '@reactchartjs/react-chart.js'
 
@@ -229,12 +232,32 @@ const validations = {
   ]
 }
 
+const DownloadImage = () => {
+  const downloadImage = () => {
+    domtoimage.toPng(document.getElementById('generatedImage'))
+      .then(dataUrl => {
+        const a = document.createElement('a')
+        a.href = dataUrl
+        a.download = 'tweet-chart.png'
+        a.click()
+      })
+  }
+
+  return (
+    <div className='downloadImage'>
+      <button className='button blue' onClick={downloadImage}>
+        Download
+      </button>
+    </div>
+  )
+}
+
 const GeneratedImage = props => {
   const { backendResult } = props
   const { tweetDetails, coinHistoricalData, coinSymbol } = backendResult
 
   return (
-    <div className='generatedImage'>
+    <div id='generatedImage' className='generatedImage'>
       <TweetImage tweetDetails={tweetDetails} />
       <LineChart coinHistoricalData={coinHistoricalData} coinSymbol={coinSymbol} />
     </div>
@@ -311,7 +334,10 @@ const App = () => {
         {
           backendResult
             ? (
-              <GeneratedImage backendResult={backendResult} />
+              <React.Fragment>
+                <GeneratedImage backendResult={backendResult} />
+                <DownloadImage />
+              </React.Fragment>
               )
             : (
               <div className='helpText'>
@@ -333,6 +359,7 @@ const App = () => {
             coinHistoricalData: demoCoinHistoricalData
           }}
         />
+        <DownloadImage />
       </div>
     </div>
   )

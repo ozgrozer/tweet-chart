@@ -155,6 +155,11 @@ select {
     z-index: 3;
     bottom: 50px;
     position: absolute;
+
+    .button {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
   }
 
   .helpText {

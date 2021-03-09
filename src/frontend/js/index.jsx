@@ -268,6 +268,8 @@ const GeneratedImage = props => {
 }
 
 const App = () => {
+  console.log('Test 1')
+
   const [backendResult, setBackendResult] = useState('')
 
   const [formIsSubmitting, setFormIsSubmitting] = useState(false)

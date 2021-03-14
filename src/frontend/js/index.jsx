@@ -237,7 +237,7 @@ const validations = {
   ]
 }
 
-const DownloadImage = () => {
+const DownloadButton = () => {
   const downloadImage = () => {
     domtoimage.toPng(document.getElementById('generatedImage'))
       .then(dataUrl => {
@@ -249,7 +249,7 @@ const DownloadImage = () => {
   }
 
   return (
-    <button className='button blue downloadImageButton' onClick={downloadImage}>
+    <button className='button blue downloadButton' onClick={downloadImage}>
       Download
     </button>
   )
@@ -339,10 +339,7 @@ const App = () => {
         {
           backendResult
             ? (
-              <React.Fragment>
-                <GeneratedImage backendResult={backendResult} />
-                <DownloadImage />
-              </React.Fragment>
+              <GeneratedImage backendResult={backendResult} />
               )
             : (
               <div className='helpText'>
@@ -364,8 +361,13 @@ const App = () => {
             coinHistoricalData: demoCoinHistoricalData
           }}
         />
-        <DownloadImage />
       </div>
+
+      {
+        backendResult
+          ? (<DownloadButton />)
+          : null
+      }
     </div>
   )
 }

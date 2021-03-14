@@ -72,6 +72,11 @@ select {
     width: $appWidth;
     margin: 50px auto;
   }
+
+  #appDescription {
+    color: $gray6;
+    margin-top: 6px;
+  }
 }
 
 .formGroup {

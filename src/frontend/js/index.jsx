@@ -238,6 +238,15 @@ const LineChart = props => {
   )
 }
 
+const Watermark = () => {
+  return (
+    <div className='watermark'>
+      <div>@tweet_chart</div>
+      <div>https://tweetch.art</div>
+    </div>
+  )
+}
+
 const validations = {
   empty: [
     {
@@ -274,6 +283,7 @@ const GeneratedImage = props => {
     <div id='generatedImage' className='generatedImage'>
       <TweetImage tweetDetails={tweetDetails} />
       <LineChart coinHistoricalData={coinHistoricalData} coinSymbol={coinSymbol} />
+      <Watermark />
     </div>
   )
 }

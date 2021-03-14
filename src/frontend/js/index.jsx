@@ -331,7 +331,7 @@ const App = () => {
   return (
     <div id='app'>
       <h1 id='appTitle'>Tweet Chart</h1>
-      <p id='appDescription'>This simple website lets you create a TweetChart. It’s a tweet superimposed onto a price cryptocurrency chart. Useful to show how poor (or great) in hindsight someone’s tweet was!</p>
+      <p id='appDescription'>This simple website lets you create a TweetChart. It’s a tweet superimposed onto a price cryptocurrency price chart. Useful to show how poor (or great) in hindsight someone’s tweet was!</p>
 
       <Form
         onSubmit={onSubmit}

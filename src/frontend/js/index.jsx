@@ -191,6 +191,7 @@ const LineChart = props => {
       {
         fill: false,
         data: datasets,
+        showLine: true,
         pointRadius: 0,
         label: coinSymbol,
         borderColor: '#4b64ce'
@@ -199,6 +200,9 @@ const LineChart = props => {
   }
 
   const options = {
+    legend: {
+      display: false
+    },
     scales: {
       yAxes: [
         {

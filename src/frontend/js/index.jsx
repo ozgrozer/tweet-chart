@@ -189,12 +189,13 @@ const LineChart = props => {
     labels: labels,
     datasets: [
       {
-        fill: false,
+        fill: true,
         data: datasets,
         showLine: true,
         pointRadius: 0,
         label: coinSymbol,
-        borderColor: '#4b64ce'
+        borderColor: '#4b64ce',
+        backgroundColor: 'rgba(75, 99, 206, 0.1)'
       }
     ]
   }

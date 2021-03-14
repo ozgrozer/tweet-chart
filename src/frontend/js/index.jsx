@@ -204,6 +204,12 @@ const LineChart = props => {
       display: false
     },
     scales: {
+      xAxes: [{
+        ticks: {
+          autoSkip: true,
+          maxTicksLimit: 20
+        }
+      }],
       yAxes: [
         {
           ticks: {

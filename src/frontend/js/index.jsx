@@ -1,6 +1,6 @@
 /* eslint react/jsx-fragments: 0 */
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import domtoimage from 'dom-to-image'
 import { Form, Input, Select } from 'rfv'
@@ -289,8 +289,6 @@ const GeneratedImage = props => {
 }
 
 const App = () => {
-  console.log('Test 1')
-
   const [backendResult, setBackendResult] = useState('')
 
   const [formIsSubmitting, setFormIsSubmitting] = useState(false)
@@ -304,6 +302,31 @@ const App = () => {
     setFormIsSubmitting(false)
     setBackendResult(res.data)
   }
+
+  const [width, setWidth] = useState(window.innerWidth)
+  const isMobile = width <= 768
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth)
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange)
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange)
+    }
+  }, [])
+
+  useEffect(() => {
+    const zoom = 2
+    const tweetImageWidth = 1440
+    const mobilePaddings = 30 * 2
+    const usableWidth = width - mobilePaddings
+    const mobileZoom = usableWidth / tweetImageWidth
+    const divs = document.getElementsByClassName('generatedImageWrapper')
+    for (let i = 0; i < divs.length; i++) {
+      const div = divs[i]
+      div.style.zoom = isMobile ? mobileZoom : 1 / zoom
+    }
+  }, [width])
 
   return (
     <div id='app'>

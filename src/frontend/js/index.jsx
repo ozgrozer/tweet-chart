@@ -9,6 +9,7 @@ import { Line } from '@reactchartjs/react-chart.js'
 import './../css/style.scss'
 
 import time from './../../common/time'
+import numberFormat from './../../common/numberFormat'
 
 const demoTweetDetails = {
   data: [{
@@ -214,7 +215,10 @@ const LineChart = props => {
       yAxes: [
         {
           ticks: {
-            beginAtZero: false
+            beginAtZero: false,
+            callback: (label, index, labels) => {
+              return `$${numberFormat(label, 0, '.', ',')}`
+            }
           }
         }
       ]

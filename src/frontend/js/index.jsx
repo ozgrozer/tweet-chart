@@ -413,6 +413,12 @@ const App = () => {
           ? (<DownloadButton />)
           : null
       }
+
+      <footer>
+        <div>Created by <a href='https://litecoin-foundation.org/' target='_blank' rel='noopener noreferrer'>Litecoin Foundation</a></div>
+        <div>Designed by <a href='https://twitter.com/ozgrozer' target='_blank' rel='noopener noreferrer'>@ozgrozer</a></div>
+        <div>Crypto market cap & pricing data provided by <a href='https://nomics.com/' target='_blank' rel='noopener noreferrer'>Nomics</a></div>
+      </footer>
     </div>
   )
 }

@@ -13,6 +13,16 @@ body, input, select, button {
   font-family: 'Rubik', sans-serif;
 }
 
+a {
+  color: $blue;
+  transition: all 0.2s;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  &:hover {
+    border-color: $blue;
+  }
+}
+
 fieldset {
   border: none;
 }
@@ -76,6 +86,7 @@ select {
   #appDescription {
     color: $gray6;
     margin-top: 6px;
+    line-height: 26px;
   }
 
   .formGroup {
@@ -91,6 +102,12 @@ select {
       margin-bottom: 5px;
       text-transform: uppercase;
     }
+  }
+
+  footer {
+    color: $gray6;
+    line-height: 26px;
+    margin-top: 100px;
   }
 }
 

@@ -83,6 +83,17 @@ select {
     margin: 50px auto;
   }
 
+  #appTitle {
+    line-height: 44px;
+    vertical-align: bottom;
+
+    img {
+      height: 44px;
+      margin-right: 10px;
+      vertical-align: top;
+    }
+  }
+
   #appDescription {
     color: $gray6;
     margin-top: 6px;

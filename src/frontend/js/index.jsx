@@ -9,6 +9,7 @@ import { Line } from '@reactchartjs/react-chart.js'
 import './../css/style.scss'
 
 import time from './../../common/time'
+import faviconJpg from './../img/favicon/favicon.jpg'
 import numberFormat from './../../common/numberFormat'
 
 const demoTweetDetails = {
@@ -334,7 +335,10 @@ const App = () => {
 
   return (
     <div id='app'>
-      <h1 id='appTitle'>Tweet Chart</h1>
+      <h1 id='appTitle'>
+        <img src={faviconJpg} alt='' />
+        Tweet Chart
+      </h1>
       <p id='appDescription'>This simple website lets you create a TweetChart. It’s a tweet superimposed onto a cryptocurrency price chart. Useful to show how poor (or great) in hindsight someone’s tweet was!</p>
 
       <Form

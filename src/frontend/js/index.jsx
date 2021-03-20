@@ -1,14 +1,16 @@
 /* eslint react/jsx-fragments: 0 */
 
-import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import Select from 'react-select'
+import { Form, Input } from 'rfv'
 import domtoimage from 'dom-to-image'
-import { Form, Input, Select } from 'rfv'
+import React, { useState, useEffect } from 'react'
 import { Line } from '@reactchartjs/react-chart.js'
 
 import './../css/style.scss'
 
 import time from './../../common/time'
+import currencies from './../../common/currencies'
 import faviconJpg from './../img/favicon/favicon.jpg'
 import numberFormat from './../../common/numberFormat'
 
@@ -333,6 +335,9 @@ const App = () => {
     }
   }, [width])
 
+  const [selectedCurrency, setSelectedCurrency] = useState(currencies[0])
+  const currencyOnChange = selection => setSelectedCurrency(selection)
+
   return (
     <div id='app'>
       <h1 id='appTitle'>
@@ -365,21 +370,19 @@ const App = () => {
               Cryptocurrency
             </label>
             <Select
-              value='BTC'
-              id='coinSymbol'
+              inputId='coinSymbol'
+              placeholder='Select'
+              options={currencies}
+              className='reactSelect'
+              value={selectedCurrency}
+              onChange={currencyOnChange}
+              classNamePrefix='reactSelect'
+            />
+            <Input
+              type='hidden'
               name='coinSymbol'
-            >
-              <option value='BTC'>Bitcoin</option>
-              <option value='ETH'>Ethereum</option>
-              <option value='ADA'>Cardano</option>
-              <option value='BNB'>Binance Coin</option>
-              <option value='USDT'>Tether</option>
-              <option value='DOT'>Polkadot</option>
-              <option value='XRP'>XRP</option>
-              <option value='LTC'>Litecoin</option>
-              <option value='LINK'>Chainlink</option>
-              <option value='XLM'>Stellar</option>
-            </Select>
+              value={selectedCurrency.value}
+            />
           </div>
 
           <div className='formGroup'>

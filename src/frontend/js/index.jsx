@@ -335,7 +335,7 @@ const App = () => {
     }
   }, [width])
 
-  const [selectedCurrency, setSelectedCurrency] = useState(currencies[0])
+  const [selectedCurrency, setSelectedCurrency] = useState(currencies[324])
   const currencyOnChange = selection => setSelectedCurrency(selection)
 
   return (

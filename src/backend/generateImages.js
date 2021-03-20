@@ -47,7 +47,6 @@ const datesForNomics = props => {
   const totalMonthsBeforeUnixTime = nowDate.setMonth(nowDate.getMonth() - totalMonthsBefore)
   const startDate = time({ unixTime: totalMonthsBeforeUnixTime, format: 'yyyy-MM-dd' })
   const endDate = time({ unixTime: nowUnixTime, format: 'yyyy-MM-dd' })
-  console.log({ monthsPast, totalMonthsBefore, startDate, endDate })
 
   return { startDate, endDate }
 }
@@ -61,10 +60,20 @@ const getCoinHistoricalData = async props => {
 
     const response = await axios({
       method: 'get',
-      url: `https://api.nomics.com/v1/exchange-rates/history?key=${process.env.NOMICS_API_KEY}&format=json&currency=${coinSymbol}&start=${startDate}T00%3A00%3A00Z&end=${endDate}T00%3A00%3A00Z`
+      url: `https://api.nomics.com/v1/candles?key=${process.env.NOMICS_API_KEY}&interval=1d&currency=${coinSymbol}&start=${startDate}T00%3A00%3A00Z&end=${endDate}T00%3A00%3A00Z`
     })
 
-    return response.data
+    const result = []
+    for (const key in response.data) {
+      const item = response.data[key]
+      const newItem = {
+        rate: item.close,
+        timestamp: item.timestamp
+      }
+      result.push(newItem)
+    }
+
+    return result
   } catch (e) {
     console.log('getCoinHistoricalData issue')
     console.log(e.message)

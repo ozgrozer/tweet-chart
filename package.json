@@ -32,6 +32,7 @@
     "parcel-bundler": "1.11.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-select": "^4.3.0",
     "rfv": "^0.0.37",
     "sass": "^1.32.8",
     "standard": "^16.0.3"

@@ -289,6 +289,7 @@ const GeneratedImage = props => {
     <div id='generatedImage' className='generatedImage'>
       <TweetImage tweetDetails={tweetDetails} />
       <LineChart coinHistoricalData={coinHistoricalData} coinSymbol={coinSymbol} />
+      <div className='lineToChart' />
       <Watermark />
     </div>
   )

@@ -160,7 +160,7 @@ select {
       top: 10%;
       left: 8%;
       zoom: 0.9;
-      z-index: 2;
+      z-index: 3;
       width: 600px;
       padding: 40px;
       user-select: none;
@@ -279,6 +279,18 @@ select {
       @media (min-width: $tablet-min) {
         padding: $padding;
       }
+    }
+
+    .lineToChart {
+      z-index: 2;
+      top: 157px;
+      width: 2px;
+      left: 353px;
+      height: 157px;
+      zoom: 1 * $zoom;
+      position: absolute;
+      background-color: $red;
+      transform: rotate(338deg);
     }
 
     .watermark {

@@ -283,14 +283,14 @@ select {
 
     .watermark {
       z-index: 2;
+      right: 22px;
+      bottom: 46px;
       color: $gray6;
       font-size: 14px;
       zoom: 1 * $zoom;
       user-select: none;
       text-align: right;
       position: absolute;
-      right: $padding * 1;
-      bottom: $padding * 2;
     }
   }
 

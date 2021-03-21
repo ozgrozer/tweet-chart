@@ -47,6 +47,9 @@
 
   .reactSelect__menu {
     .reactSelect__option {
+      height: 50px;
+      padding: 0 18.5px;
+      line-height: 50px;
       &.reactSelect__option--is-focused {
         background-color: $gray2;
       }

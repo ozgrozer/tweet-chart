@@ -287,12 +287,9 @@ select {
       zoom: 1 * $zoom;
       user-select: none;
       text-align: right;
-      padding: 10px 15px;
       position: absolute;
-      right: $padding * 2;
-      bottom: $padding * 3;
-      background-color: $white;
-      border-radius: $borderRadius;
+      right: $padding * 1;
+      bottom: $padding * 2;
     }
   }
 

@@ -1,11 +1,11 @@
 /* eslint react/jsx-fragments: 0 */
 
 import ReactDOM from 'react-dom'
-import Select from 'react-select'
 import { Form, Input } from 'rfv'
 import domtoimage from 'dom-to-image'
 import React, { useState, useEffect } from 'react'
 import { Line } from '@reactchartjs/react-chart.js'
+import CreatableSelect from 'react-select/creatable'
 
 import './../css/style.scss'
 
@@ -335,7 +335,7 @@ const App = () => {
     }
   }, [width])
 
-  const [selectedCurrency, setSelectedCurrency] = useState(currencies[324])
+  const [selectedCurrency, setSelectedCurrency] = useState(currencies[0])
   const currencyOnChange = selection => setSelectedCurrency(selection)
 
   return (
@@ -369,7 +369,7 @@ const App = () => {
             <label htmlFor='coinSymbol'>
               Cryptocurrency
             </label>
-            <Select
+            <CreatableSelect
               inputId='coinSymbol'
               placeholder='Select'
               options={currencies}
@@ -377,6 +377,7 @@ const App = () => {
               value={selectedCurrency}
               onChange={currencyOnChange}
               classNamePrefix='reactSelect'
+              formatCreateLabel={inputValue => `Currency Symbol: ${inputValue}`}
             />
             <Input
               type='hidden'

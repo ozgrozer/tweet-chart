@@ -100,6 +100,17 @@ const demoCoinHistoricalData = [
   { timestamp: '2021-03-04T00:00:00Z', rate: '48635.35817795193391236381831215125805918200552387347529199' }
 ]
 
+const findDataIndex = props => {
+  const { data, tweetDate } = props
+  let result
+  for (const key in data) {
+    const coin = data[key]
+    const coinDate = time({ normalTime: coin.timestamp, format: 'yyyy-MM-dd' })
+    if (coinDate === tweetDate) result = parseInt(key)
+  }
+  return result
+}
+
 const kFormatter = num => {
   return Math.abs(num) > 999
     ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K'
@@ -177,16 +188,21 @@ const TweetImage = props => {
 }
 
 const LineChart = props => {
-  const { coinHistoricalData, coinSymbol } = props
+  const { coinHistoricalData, coinSymbol, tweetDateIndex } = props
 
   const labels = []
   const datasets = []
   for (const key in coinHistoricalData) {
     const coinDetails = coinHistoricalData[key]
     const coinDate = coinDetails.timestamp.substr(0, 10)
-    const coinPrice = parseFloat(coinDetails.rate).toFixed(2)
+    const dataset = parseFloat(coinDetails.rate).toFixed(2)
     labels.push(coinDate)
-    datasets.push(coinPrice)
+    datasets.push(dataset)
+  }
+
+  const customRadius = context => {
+    const index = context.dataIndex
+    return index === tweetDateIndex ? 10 : 0
   }
 
   const data = {
@@ -196,9 +212,11 @@ const LineChart = props => {
         fill: true,
         data: datasets,
         showLine: true,
-        pointRadius: 0,
         label: coinSymbol,
+        pointBorderWidth: '2',
         borderColor: '#4b64ce',
+        pointBorderColor: '#000000',
+        pointBackgroundColor: '#1da1f2',
         backgroundColor: 'rgba(75, 99, 206, 0.1)'
       }
     ]
@@ -207,6 +225,11 @@ const LineChart = props => {
   const options = {
     legend: {
       display: false
+    },
+    elements: {
+      point: {
+        radius: customRadius
+      }
     },
     scales: {
       xAxes: [{
@@ -285,10 +308,13 @@ const GeneratedImage = props => {
   const { backendResult } = props
   const { tweetDetails, coinHistoricalData, coinSymbol } = backendResult
 
+  const tweetDate = time({ normalTime: tweetDetails.data[0].created_at, format: 'yyyy-MM-dd' })
+  const tweetDateIndex = findDataIndex({ data: coinHistoricalData, tweetDate })
+
   return (
     <div id='generatedImage' className='generatedImage'>
       <TweetImage tweetDetails={tweetDetails} />
-      <LineChart coinHistoricalData={coinHistoricalData} coinSymbol={coinSymbol} />
+      <LineChart coinHistoricalData={coinHistoricalData} coinSymbol={coinSymbol} tweetDateIndex={tweetDateIndex} />
       <Watermark />
     </div>
   )

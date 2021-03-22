@@ -14,6 +14,7 @@ import currencies from './../../common/currencies'
 import faviconJpg from './../img/favicon/favicon.jpg'
 import numberFormat from './../../common/numberFormat'
 
+const testing = false
 const demoTweetDetails = {
   data: [{
     author_id: '44196397',
@@ -99,6 +100,15 @@ const demoCoinHistoricalData = [
   { timestamp: '2021-03-03T00:00:00Z', rate: '50403.59400476075147625186183346436929357517973678819125161' },
   { timestamp: '2021-03-04T00:00:00Z', rate: '48635.35817795193391236381831215125805918200552387347529199' }
 ]
+
+const maxValue = arr => {
+  let max = arr[0]
+  for (const val of arr) {
+    const valInt = parseInt(val)
+    if (valInt > max) max = valInt
+  }
+  return max
+}
 
 const findDataIndex = props => {
   const { data, tweetDate } = props
@@ -205,6 +215,11 @@ const LineChart = props => {
     return index === tweetDateIndex ? 10 : 0
   }
 
+  const _maxYAxis = (maxValue(datasets) * 1.8).toFixed(0)
+  const valueLength = _maxYAxis.toString().length
+  const multiplyValue = 10 ** (valueLength - 1)
+  const maxYAxis = Math.round(_maxYAxis / multiplyValue) * multiplyValue
+
   const data = {
     labels: labels,
     datasets: [
@@ -238,16 +253,17 @@ const LineChart = props => {
           maxTicksLimit: 20
         }
       }],
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: false,
-            callback: (label, index, labels) => {
-              return `$${numberFormat(label, 0, '.', ',')}`
-            }
+      yAxes: [{
+        ticks: {
+          max: maxYAxis,
+          autoSkip: true,
+          minTicksLimit: 10,
+          beginAtZero: false,
+          callback: (label, index, labels) => {
+            return `$${numberFormat(label, 0, '.', ',')}`
           }
         }
-      ]
+      }]
     }
   }
 
@@ -435,15 +451,21 @@ const App = () => {
         }
       </div>
 
-      <div className='generatedImageWrapper' style={{ display: 'none' }}>
-        <GeneratedImage
-          backendResult={{
-            coinSymbol: 'BTC',
-            tweetDetails: demoTweetDetails,
-            coinHistoricalData: demoCoinHistoricalData
-          }}
-        />
-      </div>
+      {
+        testing
+          ? (
+            <div className='generatedImageWrapper' style={{ display: 'none-' }}>
+              <GeneratedImage
+                backendResult={{
+                  coinSymbol: 'BTC',
+                  tweetDetails: demoTweetDetails,
+                  coinHistoricalData: demoCoinHistoricalData
+                }}
+              />
+            </div>
+            )
+          : null
+      }
 
       {
         backendResult

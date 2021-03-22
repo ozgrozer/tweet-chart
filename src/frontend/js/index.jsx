@@ -220,6 +220,14 @@ const LineChart = props => {
   const multiplyValue = 10 ** (valueLength - 1)
   const maxYAxis = Math.round(_maxYAxis / multiplyValue) * multiplyValue
 
+  let coinLabel
+  for (const key in currencies) {
+    const currency = currencies[key]
+    if (currency.value === coinSymbol) {
+      coinLabel = currency.label
+    }
+  }
+
   const data = {
     labels: labels,
     datasets: [
@@ -227,7 +235,7 @@ const LineChart = props => {
         fill: true,
         data: datasets,
         showLine: true,
-        label: coinSymbol,
+        label: coinLabel,
         pointBorderWidth: '2',
         borderColor: '#4b64ce',
         pointBorderColor: '#000000',
@@ -239,7 +247,7 @@ const LineChart = props => {
 
   const options = {
     legend: {
-      display: false
+      display: true
     },
     elements: {
       point: {

@@ -158,7 +158,7 @@ select {
     .tweetImage {
       $tweetSecondColor: #5b7083;
       top: 10%;
-      left: 8%;
+      left: 10%;
       zoom: 0.9;
       z-index: 3;
       width: 600px;
@@ -284,7 +284,7 @@ select {
     .watermark {
       z-index: 2;
       right: 22px;
-      bottom: 46px;
+      bottom: 62px;
       color: $gray6;
       font-size: 14px;
       zoom: 1 * $zoom;

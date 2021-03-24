@@ -295,7 +295,6 @@ const LineChart = props => {
 const Watermark = () => {
   return (
     <div className='watermark'>
-      <div>@tweet_chart</div>
       <div>https://tweetch.art</div>
     </div>
   )

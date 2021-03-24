@@ -247,7 +247,10 @@ const LineChart = props => {
 
   const options = {
     legend: {
-      display: true
+      display: true,
+      labels: {
+        fontSize: 20
+      }
     },
     elements: {
       point: {
@@ -257,12 +260,14 @@ const LineChart = props => {
     scales: {
       xAxes: [{
         ticks: {
+          fontSize: 20,
           autoSkip: true,
           maxTicksLimit: 20
         }
       }],
       yAxes: [{
         ticks: {
+          fontSize: 20,
           max: maxYAxis,
           autoSkip: true,
           minTicksLimit: 10,

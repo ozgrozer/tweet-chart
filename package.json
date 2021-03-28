@@ -15,7 +15,8 @@
     "nodemon": "nodemon --ignore .cache/ --ignore dist/ --ignore node_modules/ ./src/backend/server.js",
     "parcel": "parcel ./src/frontend/html/index.html --out-dir ./dist --public-url / --port 1301",
     "start": "node ./src/backend/server.js",
-    "build": "parcel build ./src/frontend/html/index.html --out-dir ./dist --public-url / --no-source-maps"
+    "build": "parcel build ./src/frontend/html/index.html --out-dir ./dist --public-url / --no-source-maps",
+    "icomoon": "node ./src/scripts/icomoon.js"
   },
   "dependencies": {
     "@reactchartjs/react-chart.js": "^1.0.0-rc.3",

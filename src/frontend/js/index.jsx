@@ -490,6 +490,7 @@ const App = () => {
         <div>Created by <a href='https://litecoin-foundation.org/' target='_blank' rel='noopener noreferrer'>Litecoin Foundation</a></div>
         <div>Designed by <a href='https://twitter.com/ozgrozer' target='_blank' rel='noopener noreferrer'>@ozgrozer</a></div>
         <div>Crypto market cap & pricing data provided by <a href='https://nomics.com/' target='_blank' rel='noopener noreferrer'>Nomics</a></div>
+        <div>Give feedback on <a href='https://github.com/ozgrozer/tweet-chart/issues' target='_blank' rel='noopener noreferrer'>GitHub Issues</a></div>
       </footer>
     </div>
   )

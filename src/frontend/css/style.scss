@@ -121,6 +121,33 @@ select {
     color: $gray6;
     line-height: 26px;
     margin-top: 100px;
+
+    .twitter, .github {
+      vertical-align: bottom;
+
+      span {
+        margin-left: 5px;
+        vertical-align: bottom;
+      }
+    }
+
+    .twitter {
+      color: #1d9dea;
+      &:hover {
+        border-color: #1d9dea;
+      }
+    }
+
+    .github {
+      color: #23292f;
+      &:hover {
+        border-color: #23292f;
+      }
+    }
+
+    .mt {
+      margin-top: 20px;
+    }
   }
 }
 

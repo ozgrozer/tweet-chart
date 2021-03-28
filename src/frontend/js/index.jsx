@@ -104,7 +104,7 @@ const demoCoinHistoricalData = [
 const maxValue = arr => {
   let max = arr[0]
   for (const val of arr) {
-    const valInt = parseInt(val)
+    const valInt = parseFloat(val)
     if (valInt > max) max = valInt
   }
   return max
@@ -205,7 +205,7 @@ const LineChart = props => {
   for (const key in coinHistoricalData) {
     const coinDetails = coinHistoricalData[key]
     const coinDate = coinDetails.timestamp.substr(0, 10)
-    const dataset = parseFloat(coinDetails.rate).toFixed(2)
+    const dataset = parseFloat(coinDetails.rate)
     labels.push(coinDate)
     datasets.push(dataset)
   }
@@ -218,7 +218,8 @@ const LineChart = props => {
   const _maxYAxis = (maxValue(datasets) * 1.8).toFixed(0)
   const valueLength = _maxYAxis.toString().length
   const multiplyValue = 10 ** (valueLength - 1)
-  const maxYAxis = Math.round(_maxYAxis / multiplyValue) * multiplyValue
+  const round = Math.round(_maxYAxis / multiplyValue) * multiplyValue
+  const maxYAxis = round < 1 ? (maxValue(datasets) * 3.6) : round
 
   let coinLabel
   for (const key in currencies) {

@@ -204,14 +204,13 @@ select {
 
     .tweetImage {
       $tweetSecondColor: #5b7083;
-      top: 10%;
-      left: 10%;
       zoom: 0.9;
+      top: 100px;
       z-index: 3;
+      left: 170px;
       width: 600px;
       padding: 40px;
       user-select: none;
-      position: relative;
       position: absolute;
       background-color: $white;
       border: 1px solid $gray4;
@@ -326,6 +325,16 @@ select {
       @media (min-width: $tablet-min) {
         padding: $padding;
       }
+    }
+
+    .lineToChart {
+      z-index: 2;
+      width: 2px;
+      height: 100px;
+      zoom: 1 * $zoom;
+      position: absolute;
+      background-color: $red;
+      // transform: rotate(338deg);
     }
 
     .watermark {

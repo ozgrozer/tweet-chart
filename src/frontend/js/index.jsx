@@ -307,11 +307,14 @@ const Watermark = () => {
 }
 
 const validations = {
-  empty: [
+  tweetUrl: [
     {
       rule: 'isLength',
-      args: { min: 1 },
-      invalidFeedback: 'Please provide a value'
+      args: { min: 2 }
+    },
+    {
+      rule: 'isURL',
+      args: { protocols: ['https'], require_protocol: true }
     }
   ]
 }
@@ -415,7 +418,7 @@ const App = () => {
               type='url'
               id='tweetUrl'
               name='tweetUrl'
-              validations={validations.empty}
+              validations={validations.tweetUrl}
               placeholder='https://twitter.com/elonmusk/status/1366477626429169666'
             />
           </div>

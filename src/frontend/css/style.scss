@@ -132,9 +132,9 @@ select {
     }
 
     .twitter {
-      color: #1d9dea;
+      color: #1da1f2;
       &:hover {
-        border-color: #1d9dea;
+        border-color: #1da1f2;
       }
     }
 
@@ -201,8 +201,8 @@ select {
       .twitterLogo {
         top: 40px;
         right: 40px;
-        width: 25px;
-        fill: #1da1f2;
+        color: #1da1f2;
+        font-size: 26px;
         position: absolute;
       }
 

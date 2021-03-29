@@ -310,11 +310,13 @@ const validations = {
   tweetUrl: [
     {
       rule: 'isLength',
-      args: { min: 2 }
+      args: { min: 1 },
+      invalidFeedback: 'Please provide a Tweet URL'
     },
     {
-      rule: 'isURL',
-      args: { protocols: ['https'], require_protocol: true }
+      rule: 'matches',
+      invalidFeedback: 'Please provide a valid Tweet URL',
+      args: /^https?:\/\/twitter\.com\/(?:#!\/)?(\w+)\/status(es)?\/(\d+)/
     }
   ]
 }

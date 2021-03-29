@@ -42,7 +42,7 @@ const DownloadButton = () => {
   }
 
   return (
-    <button className='button blue downloadButton' onClick={downloadImage}>
+    <button className='button green downloadButton' onClick={downloadImage}>
       Download
     </button>
   )
@@ -140,7 +140,7 @@ const App = () => {
           </div>
 
           <div className='formGroup'>
-            <button>Submit</button>
+            <button className='button blue'>Submit</button>
           </div>
         </fieldset>
       </Form>

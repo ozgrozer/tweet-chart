@@ -55,16 +55,35 @@ input, select, button {
   }
 }
 button {
-  color: $white;
   cursor: pointer;
-  border-color: $blue;
-  background-color: $blue;
   text-transform: uppercase;
-  &:hover {
-    background-color: darken($blue, 5%);
+  &:disabled, &.disabled {
+    cursor: default;
+    color: $gray4 !important;
+    border-color: $gray4 !important;
+    background-color: $gray2 !important;
   }
-  &:active {
-    background-color: darken($blue, 10%);
+  &.green {
+    color: $white;
+    border-color: $green;
+    background-color: $green;
+    &:hover {
+      background-color: darken($green, 5%);
+    }
+    &:active {
+      background-color: darken($green, 10%);
+    }
+  }
+  &.blue {
+    color: $white;
+    border-color: $blue;
+    background-color: $blue;
+    &:hover {
+      background-color: darken($blue, 5%);
+    }
+    &:active {
+      background-color: darken($blue, 10%);
+    }
   }
 }
 
@@ -344,5 +363,5 @@ select {
 .invalid-feedback {
   color: $red;
   font-size: 14px;
-  margin-top: 8px;
+  margin-top: 5px;
 }

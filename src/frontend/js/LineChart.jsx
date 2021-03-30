@@ -6,7 +6,7 @@ import currencies from './../../common/currencies'
 import numberFormat from './../../common/numberFormat'
 
 const LineChart = props => {
-  const { coinHistoricalData, coinSymbol, tweetDateIndex } = props
+  const { coinHistoricalData, coinSymbol, tweetDateIndex, pointCoordinates, setPointCoordinates } = props
 
   const labels = []
   const datasets = []
@@ -20,6 +20,11 @@ const LineChart = props => {
 
   const customRadius = context => {
     const index = context.dataIndex
+    if (index === tweetDateIndex) {
+      const _meta = context.dataset._meta
+      const _view = _meta[Object.keys(_meta)[0]].data[index]._view
+      if (_view && !Object.keys(pointCoordinates).length) setPointCoordinates({ x: _view.x, y: _view.y })
+    }
     return index === tweetDateIndex ? 10 : 0
   }
 
@@ -55,6 +60,9 @@ const LineChart = props => {
   }
 
   const options = {
+    animation: {
+      duration: 0
+    },
     legend: {
       display: true,
       labels: {

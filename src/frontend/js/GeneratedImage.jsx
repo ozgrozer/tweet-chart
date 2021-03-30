@@ -23,7 +23,10 @@ const Watermark = () => {
   )
 }
 
-const getCoordinates = el => {
+const getCoordinates = props => {
+  const { pointCoordinates } = props
+  console.log(pointCoordinates)
+
   const tweetSelector = document.getElementsByClassName('tweetImage')[0]
 
   const imageZoom = 2
@@ -44,21 +47,29 @@ const getCoordinates = el => {
   }
 }
 
-const LineToChart = () => {
+const LineToChart = props => {
+  const { pointCoordinates } = props
+
   const [coordinates, setCoordinates] = useState({})
   useEffect(() => {
-    setCoordinates(getCoordinates())
-  }, [])
+    if (Object.keys(pointCoordinates).length) {
+      setCoordinates(getCoordinates({ pointCoordinates }))
+    }
+  }, [pointCoordinates])
 
-  return (
-    <div
-      className='lineToChart'
-      style={{
-        top: `${coordinates.top}px`,
-        left: `${coordinates.left}px`
-      }}
-    />
-  )
+  if (Object.keys(coordinates).length) {
+    return (
+      <div
+        className='lineToChart'
+        style={{
+          top: `${coordinates.top}px`,
+          left: `${coordinates.left}px`
+        }}
+      />
+    )
+  }
+
+  return null
 }
 
 const GeneratedImage = props => {
@@ -68,12 +79,24 @@ const GeneratedImage = props => {
   const tweetDate = time({ normalTime: tweetDetails.data[0].created_at, format: 'yyyy-MM-dd' })
   const tweetDateIndex = findDataIndex({ data: coinHistoricalData, tweetDate })
 
+  const [pointCoordinates, setPointCoordinates] = useState({})
+
+  const left = pointCoordinates.x / 2
+  const top = pointCoordinates.y / 2
+
   return (
     <div id='generatedImage' className='generatedImage'>
       <TweetImage tweetDetails={tweetDetails} />
-      <LineChart coinHistoricalData={coinHistoricalData} coinSymbol={coinSymbol} tweetDateIndex={tweetDateIndex} />
+      <LineChart
+        coinSymbol={coinSymbol}
+        tweetDateIndex={tweetDateIndex}
+        pointCoordinates={pointCoordinates}
+        coinHistoricalData={coinHistoricalData}
+        setPointCoordinates={setPointCoordinates}
+      />
       <Watermark />
-      <LineToChart />
+      <LineToChart pointCoordinates={pointCoordinates} />
+      <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px`, width: '10px', height: '10px', backgroundColor: 'red', zIndex: '3', zoom: '2' }} />
     </div>
   )
 }

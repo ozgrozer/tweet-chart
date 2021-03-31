@@ -47,27 +47,18 @@ const LineToChart = props => {
 
     const a = point1.x - point2.x
     const b = point1.y - point2.y
-    const length = Math.sqrt(a * a + b * b) - 5
+    const lineWidth = Math.sqrt(a * a + b * b) - 5
+    const angleDegree = Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180 / Math.PI
 
-    const angleDeg = Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180 / Math.PI
-
-    const coordinates = {
+    const style = {
       left: `${point1.x}px`,
       top: `${point1.y}px`,
-      width: `${length}px`,
-      transform: `rotate(${angleDeg}deg)`
+      width: `${lineWidth}px`,
+      transform: `rotate(${angleDegree}deg)`
     }
 
     return (
-      <div
-        className='lineToChart'
-        style={{
-          top: coordinates.top,
-          left: coordinates.left,
-          width: coordinates.width,
-          transform: coordinates.transform
-        }}
-      />
+      <div className='lineToChart' style={style} />
     )
   } else {
     return null

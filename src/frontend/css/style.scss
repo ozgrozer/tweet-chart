@@ -54,6 +54,9 @@ input, select, button {
     border-color: $red;
   }
 }
+input {
+  color: $black;
+}
 button {
   cursor: pointer;
   text-transform: uppercase;

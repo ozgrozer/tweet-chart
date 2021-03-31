@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 
 import time from './../../common/time'
 import kFormatter from './../../common/kFormatter'
 
 const TweetImage = props => {
-  const { tweetDetails } = props
+  const { tweetDetails, setTweetImageRef } = props
 
   const tweetData = tweetDetails.data[0]
   const tweetUser = tweetDetails.includes.users[0]
 
+  const inputEl = useRef(null)
+  useEffect(() => {
+    setTweetImageRef(inputEl.current)
+  }, [])
+
   return (
-    <div className='tweetImage'>
+    <div className='tweetImage' ref={inputEl}>
       <i className='icon icon-twitter twitterLogo' />
 
       <div className='userDetails'>

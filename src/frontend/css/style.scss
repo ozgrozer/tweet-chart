@@ -329,12 +329,10 @@ select {
 
     .lineToChart {
       z-index: 2;
-      width: 2px;
-      height: 100px;
-      zoom: 1 * $zoom;
+      height: 4px;
       position: absolute;
+      transform-origin: left;
       background-color: $red;
-      // transform: rotate(338deg);
     }
 
     .watermark {

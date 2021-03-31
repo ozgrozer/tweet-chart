@@ -23,53 +23,55 @@ const Watermark = () => {
   )
 }
 
-const getCoordinates = props => {
-  const { pointCoordinates } = props
-  console.log(pointCoordinates)
-
-  const tweetSelector = document.getElementsByClassName('tweetImage')[0]
-
-  const imageZoom = 2
-  const tweetZoom = 0.9
-
-  const actualTweetWidthMiddleFromLeft = tweetSelector.offsetLeft + (tweetSelector.offsetWidth / 2)
-  const adjustedTweetWidthMiddleFromLeft = (actualTweetWidthMiddleFromLeft * tweetZoom) / imageZoom
-
-  const actualTweetHeightFromTop = tweetSelector.offsetTop + tweetSelector.offsetHeight
-  const adjustedTweetHeightFromTop = (actualTweetHeightFromTop * tweetZoom) / imageZoom
-
-  const top = adjustedTweetHeightFromTop
-  const left = adjustedTweetWidthMiddleFromLeft
-
-  return {
-    top,
-    left
-  }
-}
-
 const LineToChart = props => {
-  const { pointCoordinates } = props
+  const { tweetImageRef, pointCoordinates } = props
 
-  const [coordinates, setCoordinates] = useState({})
-  useEffect(() => {
-    if (Object.keys(pointCoordinates).length) {
-      setCoordinates(getCoordinates({ pointCoordinates }))
+  if (tweetImageRef) {
+    const imageZoom = 1
+    const tweetZoom = 0.9
+
+    const actualTweetWidthMiddleFromLeft = tweetImageRef.offsetLeft + (tweetImageRef.offsetWidth / 2)
+    const adjustedTweetWidthMiddleFromLeft = (actualTweetWidthMiddleFromLeft * tweetZoom) / imageZoom
+
+    const actualTweetHeightFromTop = tweetImageRef.offsetTop + tweetImageRef.offsetHeight
+    const adjustedTweetHeightFromTop = (actualTweetHeightFromTop * tweetZoom) / imageZoom
+
+    const point1 = {
+      x: adjustedTweetWidthMiddleFromLeft,
+      y: adjustedTweetHeightFromTop
     }
-  }, [pointCoordinates])
+    const point2 = {
+      x: pointCoordinates.x + 5,
+      y: pointCoordinates.y + 5
+    }
 
-  if (Object.keys(coordinates).length) {
+    const a = point1.x - point2.x
+    const b = point1.y - point2.y
+    const length = Math.sqrt(a * a + b * b) - 5
+
+    const angleDeg = Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180 / Math.PI
+
+    const coordinates = {
+      left: `${point1.x}px`,
+      top: `${point1.y}px`,
+      width: `${length}px`,
+      transform: `rotate(${angleDeg}deg)`
+    }
+
     return (
       <div
         className='lineToChart'
         style={{
-          top: `${coordinates.top}px`,
-          left: `${coordinates.left}px`
+          top: coordinates.top,
+          left: coordinates.left,
+          width: coordinates.width,
+          transform: coordinates.transform
         }}
       />
     )
+  } else {
+    return null
   }
-
-  return null
 }
 
 const GeneratedImage = props => {
@@ -80,13 +82,14 @@ const GeneratedImage = props => {
   const tweetDateIndex = findDataIndex({ data: coinHistoricalData, tweetDate })
 
   const [pointCoordinates, setPointCoordinates] = useState({})
-
-  const left = pointCoordinates.x / 2
-  const top = pointCoordinates.y / 2
+  const [tweetImageRef, setTweetImageRef] = useState(null)
 
   return (
     <div id='generatedImage' className='generatedImage'>
-      <TweetImage tweetDetails={tweetDetails} />
+      <TweetImage
+        tweetDetails={tweetDetails}
+        setTweetImageRef={setTweetImageRef}
+      />
       <LineChart
         coinSymbol={coinSymbol}
         tweetDateIndex={tweetDateIndex}
@@ -95,8 +98,10 @@ const GeneratedImage = props => {
         setPointCoordinates={setPointCoordinates}
       />
       <Watermark />
-      <LineToChart pointCoordinates={pointCoordinates} />
-      <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px`, width: '10px', height: '10px', backgroundColor: 'red', zIndex: '3', zoom: '2' }} />
+      <LineToChart
+        tweetImageRef={tweetImageRef}
+        pointCoordinates={pointCoordinates}
+      />
     </div>
   )
 }

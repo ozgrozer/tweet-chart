@@ -23,7 +23,9 @@ const LineChart = props => {
     if (index === tweetDateIndex) {
       const _meta = context.dataset._meta
       const _view = _meta[Object.keys(_meta)[0]].data[index]._view
-      if (_view && !Object.keys(pointCoordinates).length) setPointCoordinates({ x: _view.x, y: _view.y })
+      if (_view && !Object.keys(pointCoordinates).length) {
+        setPointCoordinates({ x: _view.x + 10, y: _view.y + 10 })
+      }
     }
     return index === tweetDateIndex ? 10 : 0
   }

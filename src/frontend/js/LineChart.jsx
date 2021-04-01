@@ -44,6 +44,8 @@ const LineChart = props => {
     }
   }
 
+  if (!coinLabel) coinLabel = coinSymbol
+
   const data = {
     labels: labels,
     datasets: [

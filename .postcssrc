@@ -1,0 +1,12 @@
+{
+  "modules": false,
+  "map": {
+    "inline": false,
+    "sourcesContent": true
+  },
+  "plugins": {
+    "autoprefixer": {
+      "grid": true
+    }
+  }
+}

@@ -81,7 +81,8 @@ const getCoinHistoricalData = async props => {
 }
 
 const generateImages = async (req, res) => {
-  const { tweetUrl, coinSymbol } = req.body
+  const { tweetUrl } = req.body
+  const coinSymbol = req.body.coinSymbol.toUpperCase()
   const tweetDetails = await getTweetDetails({ tweetUrl })
   const coinHistoricalData = await getCoinHistoricalData({ tweetDetails, coinSymbol })
   const result = { tweetDetails, coinHistoricalData, coinSymbol }
